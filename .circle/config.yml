@@ -1,0 +1,29 @@
+version: 2
+jobs:
+    build:
+        working_directory: /work
+        docker:
+            - image: docker:18.02.0-ce-git
+        steps:
+            - checkout
+            - setup_remote_docker
+            - run: echo "build"
+    push:
+        machine: true
+        working_directory: ~/work
+        steps:
+            - checkout
+            - echo "push"
+            - run: ./scripts/job.sh
+workflow:
+    version: 2
+    docker-build:
+        jobs:
+            - build:
+                filters:
+                    branches:
+                        ignore: master
+            - push:
+                filters:
+                    branches:
+                        only: master
