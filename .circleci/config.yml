@@ -16,7 +16,7 @@ workflow:
     version: 2
     docker-build:
         jobs:
-            - build:
+            - build
             - push:
                 requires:
                     - build
