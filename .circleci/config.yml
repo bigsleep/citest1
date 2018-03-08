@@ -12,6 +12,9 @@ jobs:
         machine: true
         working_directory: ~/work
         steps:
+            - add_ssh_keys:
+                fingerprints:
+                    - "37:d5:23:0f:36:d9:e4:91:86:29:bb:ba:96:5b:c4:9b"
             - checkout
             - echo "push"
             - run: ./scripts/job.sh
@@ -27,3 +30,5 @@ workflow:
                 filters:
                     branches:
                         only: master
+                    tags:
+                        ignore: /.*/
