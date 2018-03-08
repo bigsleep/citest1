@@ -23,12 +23,4 @@ workflow:
     docker-build:
         jobs:
             - build:
-                filters:
-                    branches:
-                        ignore: master
             - push:
-                filters:
-                    branches:
-                        only: master
-                    tags:
-                        ignore: /.*/
