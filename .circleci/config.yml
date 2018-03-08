@@ -5,19 +5,13 @@ jobs:
         docker:
             - image: docker:18.02.0-ce-git
         steps:
-            - checkout
-            - setup_remote_docker
             - run: echo "build"
     push:
-        machine: true
-        working_directory: ~/work
+        working_directory: /work
+        docker:
+            - image: docker:18.02.0-ce-git
         steps:
-            - add_ssh_keys:
-                fingerprints:
-                    - "37:d5:23:0f:36:d9:e4:91:86:29:bb:ba:96:5b:c4:9b"
-            - checkout
             - echo "push"
-            - run: ./scripts/job.sh
 workflow:
     version: 2
     docker-build:
